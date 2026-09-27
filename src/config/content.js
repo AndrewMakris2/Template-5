@@ -24,7 +24,7 @@ export const content = {
   site: {
     lang: 'en',
     // Full production URL, no trailing slash. Used for canonical + og:url.
-    url: 'https://example-stylist.netlify.app', // TODO: replace with real client content
+    url: 'https://hairstylist-template-5.netlify.app', // Template 5 demo URL — TODO: replace with real client content
     title: 'Vivienne Sterling — Luxury Colour, Extensions & Styling, Scottsdale', // TODO: replace with real client content
     description:
       'Scottsdale hairstylist offering luxury colour, hand-tied extensions and red-carpet styling in a private salon suite. Book your appointment online.', // TODO: replace with real client content
