@@ -5,10 +5,15 @@ plain HTML + vanilla JS, Tailwind CSS v4 and Vite. There's no backend, CMS, or
 booking system: every "Book" button links out to the stylist's existing
 booking platform.
 
-This is a **reskin of Template 1** (Minimalist / Editorial): same components,
-with a different `theme.js` (ivory and champagne, deep emerald, antique gold
-accent, Bodoni Moda + Jost), `content.js`, and images. No component code differs
-from Template 1.
+This template has its **own design** ("Fashion house"): a stacked,
+letterspaced masthead with a centered link row, a three-photo collage hero, an
+emerald about band with an oval portrait, a couture-style price list placed
+before the portfolio, a slideshow gallery with thumbnails, a featured quote,
+and a split emerald/ivory contact panel.
+
+All five templates share the **same `content.js` format**, so a client's content
+can be moved into any of the designs unchanged. Each template has its own
+components.
 
 ---
 

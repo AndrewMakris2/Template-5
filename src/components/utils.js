@@ -15,9 +15,12 @@ export function esc(value = '') {
 /** Attributes for links that leave the site. */
 export const external = 'target="_blank" rel="noopener noreferrer"';
 
-/** Small uppercase section label, e.g. "About". */
-export function sectionLabel(text) {
-  return `<p class="text-[0.7rem] font-medium uppercase tracking-[0.3em] text-accent">${esc(text)}</p>`;
+/** Italic serif section label with a short gold rule beneath. `tone="light"` for emerald sections. */
+export function sectionLabel(text, tone = 'dark', align = 'center') {
+  const color = tone === 'light' ? 'text-on-ink/80' : 'text-accent';
+  const rule = tone === 'light' ? 'bg-on-ink/40' : 'bg-accent';
+  const wrap = align === 'center' ? 'items-center text-center' : 'items-start';
+  return `<div class="flex flex-col ${wrap}"><p class="font-heading text-lg italic ${color}">${esc(text)}</p><span class="mt-3 block h-px w-10 ${rule}" aria-hidden="true"></span></div>`;
 }
 
 /** Turn a display phone number into a tel: href. */
@@ -25,12 +28,12 @@ export function telHref(phone) {
   return `tel:${String(phone).replace(/[^\d+]/g, '')}`;
 }
 
-/** Shared button styles. */
+/** Shared button styles — slim, widely tracked, couture-style. */
 export const buttonClasses = {
   solid:
-    'inline-flex items-center justify-center gap-3 bg-ink px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-on-ink transition-colors duration-300 hover:bg-accent hover:text-on-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent',
-  light:
-    'inline-flex items-center justify-center gap-3 bg-paper px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:bg-accent hover:text-on-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-paper',
+    'inline-flex items-center justify-center gap-3 bg-ink px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.3em] text-on-ink transition-colors duration-300 hover:bg-accent hover:text-on-accent focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent',
   outline:
-    'inline-flex items-center justify-center gap-3 border border-ink px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-on-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent',
+    'inline-flex items-center justify-center gap-3 border border-accent px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.3em] text-ink transition-colors duration-300 hover:bg-accent hover:text-on-accent focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-accent',
+  light:
+    'inline-flex items-center justify-center gap-3 border border-on-ink/50 px-10 py-4 text-[0.7rem] font-medium uppercase tracking-[0.3em] text-on-ink transition-colors duration-300 hover:bg-on-ink hover:text-ink focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-on-ink',
 };

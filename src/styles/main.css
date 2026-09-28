@@ -69,6 +69,22 @@
     border-bottom-color: var(--color-line);
   }
 
+  /* Hide horizontal scrollbars on the slideshow track and thumbnail rail */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Specialties separated by small gold dots */
+  .dot-list > li + li::before {
+    content: '\00B7';
+    margin-right: 1rem;
+    color: var(--color-on-ink);
+    opacity: 0.6;
+  }
+
   .lightbox[open] {
     display: block;
   }

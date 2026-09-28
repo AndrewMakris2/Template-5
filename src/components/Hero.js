@@ -1,21 +1,38 @@
 import { esc, external, buttonClasses } from './utils.js';
 import { icon } from './icons.js';
 
-export function Hero({ hero, booking }) {
-  return `
-<section id="top" class="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden bg-ink md:min-h-[calc(100svh-5rem)]" aria-labelledby="hero-heading">
-  <img src="${esc(hero.image.src)}" alt="${esc(hero.image.alt)}" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-80" fetchpriority="high" decoding="async" />
-  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent" aria-hidden="true"></div>
+/**
+ * Centered title over a three-photo collage: the hero image framed in the middle,
+ * flanked by the first two gallery images (decorative here — they're in the gallery).
+ */
+export function Hero({ hero, booking, gallery }) {
+  const [left, right] = gallery.images;
+  const side = (img, cls) =>
+    img
+      ? `<div class="hidden overflow-hidden bg-cream md:block ${cls}"><img src="${esc(img.src)}" alt="" class="h-full w-full object-cover" decoding="async" /></div>`
+      : '';
 
-  <div class="mx-auto w-full max-w-7xl px-5 pb-16 pt-32 md:px-10 md:pb-24">
-    <p class="mb-6 text-[0.7rem] font-medium uppercase tracking-[0.3em] text-on-ink/80">${esc(hero.eyebrow)}</p>
-    <h1 id="hero-heading" class="max-w-4xl font-heading text-6xl font-light leading-[0.95] text-on-ink sm:text-7xl md:text-8xl lg:text-9xl">${esc(hero.heading)}</h1>
-    <p class="mt-6 max-w-xl font-heading text-2xl font-light italic text-on-ink/90 md:text-3xl">${esc(hero.tagline)}</p>
-    <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-      <a href="${esc(booking.url)}" ${external} class="${buttonClasses.light}">${esc(hero.ctaLabel)} ${icon('arrowUpRight', 'h-4 w-4')}</a>
-      <a href="${esc(hero.secondaryCtaHref)}" class="group inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-on-ink">
-        <span class="border-b border-on-ink/40 pb-1 transition-colors group-hover:border-on-ink">${esc(hero.secondaryCtaLabel)}</span>
-      </a>
+  return `
+<section id="top" class="bg-paper pb-20 pt-12 md:pb-28 md:pt-16" aria-labelledby="hero-heading">
+  <div class="mx-auto max-w-7xl px-5 text-center md:px-10">
+    <p class="text-[0.68rem] font-medium uppercase tracking-[0.35em] text-accent">${esc(hero.eyebrow)}</p>
+    <h1 id="hero-heading" class="mt-6 font-heading text-[clamp(3rem,9vw,8rem)] leading-[0.95] text-ink">${esc(hero.heading)}</h1>
+
+    <div class="mt-12 grid grid-cols-1 items-center gap-6 md:mt-16 md:grid-cols-12">
+      ${side(left, 'aspect-[3/4] md:col-span-3 md:translate-y-16')}
+      <div class="relative md:col-span-6">
+        <div class="aspect-[4/5] overflow-hidden bg-cream">
+          <img src="${esc(hero.image.src)}" alt="${esc(hero.image.alt)}" class="h-full w-full object-cover" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="pointer-events-none absolute inset-3 border border-paper/70 md:inset-5" aria-hidden="true"></div>
+      </div>
+      ${side(right, 'aspect-[3/4] md:col-span-3 md:-translate-y-16')}
+    </div>
+
+    <p class="mx-auto mt-14 max-w-xl font-heading text-2xl italic leading-snug text-ink md:mt-20 md:text-3xl">${esc(hero.tagline)}</p>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href="${esc(booking.url)}" ${external} class="${buttonClasses.solid}">${esc(hero.ctaLabel)}</a>
+      <a href="${esc(hero.secondaryCtaHref)}" class="${buttonClasses.outline}">${esc(hero.secondaryCtaLabel)} ${icon('arrowRight', 'h-3.5 w-3.5')}</a>
     </div>
   </div>
 </section>`;
